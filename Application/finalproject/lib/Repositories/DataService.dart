@@ -13,7 +13,6 @@ class DataService {
         return true;
       }
       else{
-        print("Did not add item.");
         return false;
       }
     }
@@ -24,9 +23,10 @@ class DataService {
   }
 
   ///Returns the requested value by key from secure storage
-  Future<String?> TryGetItem(String key) async {
+  Future<String?> TryGetItem(String Akey) async {
     try {
-      return await SecureStorage.read(key: key);
+      String? item =  await SecureStorage.read(key: Akey);
+      return item;
     } catch(error) {
       print(error);
       return null;

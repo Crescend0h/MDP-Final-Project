@@ -3,6 +3,7 @@ import 'package:finalproject/Models/AuthResponse.dart';
 import 'package:finalproject/Repositories/UserClient.dart';
 import 'package:flutter/material.dart';
 import 'package:finalproject/Models/User.dart';
+import 'package:finalproject/Views/About.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,6 +35,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 bool _loading = false;
+String appVersion = "Version 1.0.0";
 
 class _MyHomePageState extends State<MyHomePage> {
   String apiVersion = "";
@@ -106,6 +108,11 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  onAboutPageClick() {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const About()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -166,7 +173,14 @@ class _MyHomePageState extends State<MyHomePage> {
             : Row(mainAxisAlignment: MainAxisAlignment.end, children: [
               Text(apiVersion),
             ]),
-          ],
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              TextButton(onPressed: onAboutPageClick, child: Text("About")),
+              Text(appVersion),
+              Padding(padding: EdgeInsets.all(10),)
+            ],
+          )],
         ),
       ),
     );

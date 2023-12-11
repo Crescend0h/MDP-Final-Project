@@ -69,8 +69,8 @@ class UserClient {
     try {
       AddDefaultUser();
       //Check for a username
-      String response = _dataService.TryGetItem(user.username).toString();
-      print(response);
+      var response = await _dataService.TryGetItem(user.username);
+      String retirevedPW = response.toString();
       if (response == null)
       {
         return 0;
