@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:finalproject/main.dart';
 
 class About extends StatelessWidget {
   const About({super.key});
@@ -13,7 +12,7 @@ class About extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            Text("You're using Jacob's Final Project App, the best app you can find for information about various kinds of cats! \nDesigned by Jacob Anderson for CMSC 2204."),
+            Text("You're using Jacob's Final Project App, the best app you can find for information about exhibits in the Metropolitan Museum of Art! \nDesigned by Jacob Anderson for CMSC 2204."),
             ElevatedButton(
               onPressed: () {
                 Navigator.pop(context);
