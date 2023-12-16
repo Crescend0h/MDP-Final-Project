@@ -1,10 +1,12 @@
-import 'dart:ffi';
-
 import 'package:finalproject/Models/AuthResponse.dart';
 import '../Models/LoginStructure.dart';
 import 'package:dio/dio.dart';
 import './DataService.dart';
 import '../Models/User.dart';
+
+//Handles logins.
+//This file is probably redundant since the login doesn't use an API, but it's scary and I don't want to touch it, lest i break everything.
+//MuseumAPIClient actually handles the calls to the museum API.
 
 const String BaseUrl = "https://catfact.ninja";
 

@@ -1,6 +1,6 @@
 import 'package:finalproject/Models/LoginStructure.dart';
-import 'package:finalproject/Models/AuthResponse.dart';
 import 'package:finalproject/Repositories/UserClient.dart';
+import 'package:finalproject/Views/itemlist.dart';
 import 'package:flutter/material.dart';
 import 'package:finalproject/Models/User.dart';
 import 'package:finalproject/Views/About.dart';
@@ -65,6 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
       widget.userClient
         .LoginNoAPI(user)
         .then((response) => {onLoginCallCompleted(response)});
+        
     });
   }
 
@@ -78,8 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ScaffoldMessenger.of(context)
         .showSnackBar((SnackBar(content: Text("Incorrect Password."))));
     } else if (response == 2) {
-      ScaffoldMessenger.of(context)
-        .showSnackBar((SnackBar(content: Text("Login successful."))));
+      Navigator.push(context, MaterialPageRoute(builder: ((context) => itemListPage())));
     } else {
       ScaffoldMessenger.of(context)
         .showSnackBar((SnackBar(content: Text("Login error."))));
