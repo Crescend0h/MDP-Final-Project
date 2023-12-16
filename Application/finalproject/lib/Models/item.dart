@@ -24,24 +24,36 @@ class Item {
   Widget listItemSmall() {
     return Padding(
         padding: EdgeInsets.all(8.0),
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, 
-        children: [
-          Row(
-            children: [
-              Text("Item ID: " + itemID.toString() + " | "),
-              Text("Title: "+title),
-            ],
-          ),
-          Row(
-            children: [
-              Text("Department: " + department + "   "),
-              FloatingActionButton(
-                onPressed: onClickDetails,
-                child: Text("More Details"),
-              )
-            ],
-          )
-        ]));
+        child: GestureDetector(
+            onTap: onClickDetails,
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Row(
+                children: [
+                  Text("Item ID: " + itemID.toString(),
+                      style: TextStyle(fontSize: 16)),
+                ],
+              ),
+              Row(
+                children: [
+                  Text("Title: " + title, 
+                      style: TextStyle(fontSize: 16)),
+                ],
+              ),
+              Row(
+                children: [
+                  Text("Department: " + department + "   ",
+                      style: TextStyle(fontSize: 16)),
+                ],
+              ),
+              Row(
+                children: [
+                  Text("Medium: " + medium + "   ",
+                      style: TextStyle(fontSize: 16)),
+                ],
+              ),
+              const Divider()
+            ])));
   }
 
 //Used for detailed view
@@ -49,11 +61,15 @@ class Item {
     return Padding(
       padding: EdgeInsets.all(8.0),
       child: Column(children: [
-        Text("Item ID: " + itemID.toString()),
-        Text("Department: " + department),
-        Text("Title: " + title),
-        Text("Medium:" + medium),
-        Text("Object Name: " + objectName)
+        Text("Item ID: " + itemID.toString(),
+            style: TextStyle(
+              fontSize: 18,
+            )),
+        Text("Department: " + department, style: TextStyle(fontSize: 18)),
+        Text("Title: " + title,
+            style: TextStyle(fontSize: 18)),
+        Text("Medium:" + medium, style: TextStyle(fontSize: 18)),
+        Text("Object Name: " + objectName, style: TextStyle(fontSize: 18))
       ]),
     );
   }

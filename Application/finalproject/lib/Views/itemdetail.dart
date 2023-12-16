@@ -13,6 +13,10 @@ class _ItemDetailsPageState extends State<ItemDetailsPage> {
   _ItemDetailsPageState(item);
   late Item item = widget.loadedItem;
 
+  void onClosePress() {
+    Navigator.pop(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,11 +25,14 @@ class _ItemDetailsPageState extends State<ItemDetailsPage> {
         title: Text('Anderson Final Project'),
       ),
       body: Center(
-          child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[item.listItemLarge()]),
+            children: <Widget>[
+              item.listItemLarge(),
+              FloatingActionButton(onPressed: onClosePress, child: Text("Go Back"),)
+            ]),
       )),
     );
   }

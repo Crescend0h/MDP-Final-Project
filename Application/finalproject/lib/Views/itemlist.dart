@@ -22,14 +22,17 @@ class _itemListPageState extends State<itemListPage> {
       isLoading = true;
       isFirstLoad = false;
     });
-    buildList(0);
+    buildList(200);
   }
 
   void buildList(int index) async {
     try {
       int i = index - 10;
-      if (i < 0) {i = 0;}
-      else if (i > 485906) {i = 485906;}
+      if (i < 0) {
+        i = 0;
+      } else if (i > 485906) {
+        i = 485906;
+      }
       while (widget.listItems.length < 10) {
         Item? item = await widget.museumAPIClient.GetMuseumItem(i, context);
         if (item != null) {
@@ -49,6 +52,11 @@ class _itemListPageState extends State<itemListPage> {
       isLoading = false;
       isFirstLoad = false;
     });
+  }
+
+  void onReload() {
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text("Items reloaded.")));
   }
 
   @override
@@ -71,11 +79,18 @@ class _itemListPageState extends State<itemListPage> {
                       ],
                     )
                   : SingleChildScrollView(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                        widget.dliHandler.GetShortList(widget.listItems)
-                      ]),
+                      child: Container(
+                        color: Colors.amber[100],
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              widget.dliHandler.GetShortList(widget.listItems),
+                              FloatingActionButton(
+                                onPressed: onReload,
+                                child: Text("Reload"),
+                              )
+                            ]),
+                      ),
                     )),
     );
   }

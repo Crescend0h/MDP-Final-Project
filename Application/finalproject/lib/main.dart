@@ -16,7 +16,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Anderson Final Project',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.yellow),
+        scaffoldBackgroundColor: Colors.amber[50],
         useMaterial3: true,
       ),
       home: MyHomePage(title: 'Anderson Final Project Home Page'),
@@ -35,7 +36,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 bool _loading = false;
-String appVersion = "Version 1.0.0";
+String appVersion = "Version 2.0.0";
 
 class _MyHomePageState extends State<MyHomePage> {
   String apiVersion = "";

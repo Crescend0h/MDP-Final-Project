@@ -24,8 +24,7 @@ class UserClient {
 
       var authResponse = new AuthResponse(data['userId'], data['token']);
 
-      if(authResponse.token != null) 
-      {
+      if (authResponse.token != null) {
         await _dataService.AddItem("token", authResponse.token);
       }
 
@@ -35,24 +34,23 @@ class UserClient {
       return null;
     }
   }
+
   Future<List<User>?> GetUsersAsync() async {
-    try{
+    try {
       var token = await _dataService.TryGetItem("token");
       if (token != null) {
         var response = await _dio.get("/GetUsers",
-        options: Options(headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json",
-          "Authorization": "Bearer $token"
-        })
-        );
+            options: Options(headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json",
+              "Authorization": "Bearer $token"
+            }));
         List<User> users = new List.empty(growable: true);
 
-        if (response != null)
-        {
-          for (var user in response.data)
-          {
-            users.add(User(user["_id"], user["Username"], user["Password"], user["Email"], user["AuthLevel"]));
+        if (response != null) {
+          for (var user in response.data) {
+            users.add(User(user["_id"], user["Username"], user["Password"],
+                user["Email"], user["AuthLevel"]));
           }
 
           return users;
@@ -60,12 +58,12 @@ class UserClient {
       } else {
         return null;
       }
-    }
-    catch(error) {
+    } catch (error) {
       print(error);
       return null;
     }
   }
+
   //Login protocols for non-API login.
   Future<int?> LoginNoAPI(LoginStructure user) async {
     try {
@@ -73,22 +71,16 @@ class UserClient {
       //Check for a username
       var response = await _dataService.TryGetItem(user.username);
       String retirevedPW = response.toString();
-      if (response == null)
-      {
+      if (response == null) {
         return 0;
-      }
-      else 
-      {
-        if (response == user.password)
-        {
+      } else {
+        if (response == user.password) {
           return 2;
-        }
-        else {
+        } else {
           return 1;
         }
       }
-    }
-    catch(error) {
+    } catch (error) {
       print(error);
       return null;
     }
@@ -102,5 +94,5 @@ class UserClient {
   Future<String> GetAPIVersion() async {
     var response = await _dio.get("/ApiVersion");
     return response.data;
-  } 
+  }
 }
